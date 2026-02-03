@@ -56,6 +56,8 @@ impl MockGameHub {
             player2_points,
         }
         .publish(&env);
+        // bump instance ttl if required
+        env.storage().instance().extend_ttl(17_280, 518_400);
     }
 
     /// End a game session and declare winner
