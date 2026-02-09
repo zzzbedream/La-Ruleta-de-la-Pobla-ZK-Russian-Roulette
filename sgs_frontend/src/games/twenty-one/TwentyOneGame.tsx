@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { twentyOneService } from './twentyOneService';
 import { requestCache, createCacheKey } from '@/utils/requestCache';
+import { getLocationSearch } from '@/utils/location';
 import { useWallet } from '@/hooks/useWallet';
 import { getFundedSimulationSourceAddress } from '@/utils/simulationUtils';
 import { devWalletService, DevWalletService } from '@/services/devWalletService';
@@ -258,7 +259,7 @@ export function TwentyOneGame({
       return;
     }
 
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(getLocationSearch());
     const authEntry = urlParams.get('auth');
     const urlSessionId = urlParams.get('session-id');
 

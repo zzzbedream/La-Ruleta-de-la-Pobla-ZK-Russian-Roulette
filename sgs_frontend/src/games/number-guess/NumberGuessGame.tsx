@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { NumberGuessService } from './numberGuessService';
 import { requestCache, createCacheKey } from '@/utils/requestCache';
+import { getLocationSearch } from '@/utils/location';
 import { useWallet } from '@/hooks/useWallet';
 import { NUMBER_GUESS_CONTRACT } from '@/utils/constants';
 import { getFundedSimulationSourceAddress } from '@/utils/simulationUtils';
@@ -215,7 +216,7 @@ export function NumberGuessGame({
     }
 
     // Priority 2: Check URL parameters (for direct navigation without GamesCatalog)
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(getLocationSearch());
     const authEntry = urlParams.get('auth');
     const urlSessionId = urlParams.get('session-id');
 

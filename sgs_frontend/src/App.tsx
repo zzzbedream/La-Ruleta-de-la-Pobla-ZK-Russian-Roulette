@@ -10,11 +10,28 @@ const baseUrl = import.meta.env.BASE_URL || '/';
 const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
 const rootPath = normalizedBase === '' ? '/' : `${normalizedBase}/`;
 
+const parseHashRoute = (): { page: Page; search: string } | null => {
+  if (typeof window === 'undefined') return null;
+
+  const raw = window.location.hash.replace('#', '');
+  if (!raw) return null;
+
+  const [pathPart, queryPart = ''] = raw.split('?');
+  const segment = pathPart.replace(/^\/+/, '').split('/')[0];
+
+  if (segment !== 'docs' && segment !== 'games') return null;
+
+  return {
+    page: segment as Page,
+    search: queryPart ? `?${queryPart}` : '',
+  };
+};
+
 const resolvePageFromLocation = (): Page => {
   if (typeof window === 'undefined') return 'home';
 
-  const hash = window.location.hash.replace('#', '');
-  if (hash === 'docs' || hash === 'games') return hash as Page;
+  const hashRoute = parseHashRoute();
+  if (hashRoute) return hashRoute.page;
 
   const path = window.location.pathname;
   const relative = normalizedBase && path.startsWith(normalizedBase)
@@ -45,6 +62,14 @@ function App() {
   };
 
   useEffect(() => {
+    const hashRoute = parseHashRoute();
+    if (hashRoute) {
+      const target = `${buildPath(hashRoute.page)}${hashRoute.search}`;
+      if (`${window.location.pathname}${window.location.search}` !== target) {
+        window.history.replaceState(null, '', target);
+      }
+    }
+
     const handleRouteChange = () => {
       setPage(resolvePageFromLocation());
     };
