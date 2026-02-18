@@ -1,5 +1,5 @@
 #!/bin/bash
-# Vercel build script — creates .env at repo root and builds the frontend
+# Vercel build script 鈥?creates .env at repo root and builds the frontend
 
 cat > .env << 'EOF'
 VITE_ZK_MAFIA_CONTRACT_ID=CDNAQVX6I4IAGMQAOPJOMH33G7XOTEHXC6ILDSKAS3ZMGGSHJXTH7VVA
