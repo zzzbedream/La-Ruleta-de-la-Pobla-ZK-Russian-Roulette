@@ -1,0 +1,10 @@
+target/
+node_modules/
+.git/
+bindings/
+docs/
+sgs_frontend/
+template_frontend/
+*.wasm
+Cargo.lock
+bun.lock

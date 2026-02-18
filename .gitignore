@@ -40,3 +40,4 @@ frontend-template/*.tsbuildinfo
 # OS
 .DS_Store
 Thumbs.db
+.vercel
