@@ -1,0 +1,21 @@
+# ============================================================
+# Prover.toml — Inputs de ejemplo para La Pobla Oculta
+# ============================================================
+# Ejecutar con: nargo prove
+#
+# Para generar los valores públicos correctos, usa el helper JS:
+#   import { poseidon } from "@noir-lang/noir_js";
+#   const commitment = poseidon([user_secret]);
+#   const nullifier  = poseidon([user_secret, user_role_id]);
+# ============================================================
+
+# ── Inputs privados ──────────────────────────────────────────
+user_secret = "12345"
+user_role_id = "1"          # 1 = Sapo (requerido para prueba válida)
+
+# ── Inputs públicos ──────────────────────────────────────────
+# Estos valores deben ser computados como Poseidon hash de los
+# inputs privados. Los de abajo son placeholders; reemplaza con
+# los hashes reales generados por tu frontend o tests.
+commitment_hash = ""        # = Poseidon(user_secret)
+action_nullifier = ""       # = Poseidon(user_secret, user_role_id)

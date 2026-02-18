@@ -1,0 +1,199 @@
+.studio {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-ink);
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.studio-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Neon street-light orbs — pulsing and floating in the dark */
+.studio-orb {
+  position: absolute;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  animation: float 22s ease-in-out infinite;
+}
+
+/* Red neon glow — top left (like a bar sign) */
+.orb-1 {
+  top: -20%;
+  left: -12%;
+  background: radial-gradient(circle at 40% 40%, rgba(255, 45, 85, 0.5), transparent 65%);
+  animation-delay: 0s;
+}
+
+/* Cyan neon glow — top right (like a pharmacy sign) */
+.orb-2 {
+  right: -12%;
+  top: -8%;
+  background: radial-gradient(circle at 60% 40%, rgba(0, 240, 255, 0.35), transparent 65%);
+  animation-delay: -8s;
+}
+
+/* Purple graffiti glow — bottom center */
+.orb-3 {
+  bottom: -25%;
+  left: 30%;
+  background: radial-gradient(circle at 50% 50%, rgba(191, 90, 242, 0.3), transparent 65%);
+  animation-delay: -14s;
+}
+
+/* Subtle grid — like chain-link fence pattern */
+.studio-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100px 100px;
+  opacity: 0.5;
+}
+
+.studio-header,
+.studio-main,
+.studio-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.studio-header {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2.75rem 2.5rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.brand {
+  max-width: 560px;
+  animation: fadeUp 0.6s ease both;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw + 1rem, 3.6rem);
+  line-height: 1.05;
+  margin: 0 0 0.5rem;
+  text-wrap: balance;
+  color: var(--color-accent);
+  text-shadow:
+    0 0 10px rgba(255, 45, 85, 0.5),
+    0 0 30px rgba(255, 45, 85, 0.25),
+    0 0 60px rgba(255, 45, 85, 0.1),
+    2px 2px 0 rgba(0, 0, 0, 0.9);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.brand-subtitle {
+  color: var(--color-ink-muted);
+  font-size: 1.05rem;
+  margin: 0;
+  font-style: italic;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.network-pill {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.05);
+  font-family: var(--font-mono);
+  color: var(--color-ink-muted);
+}
+
+.network-pill.dev-pill {
+  border-color: rgba(0, 240, 255, 0.35);
+  background: rgba(0, 240, 255, 0.08);
+  color: var(--color-neon-cyan);
+  text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
+}
+
+.studio-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 2.5rem 3rem;
+  flex: 1;
+}
+
+.studio-footer {
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  width: 100%;
+  padding: 0 2.5rem;
+  display: flex;
+  justify-content: flex-end;
+  text-align: right;
+  gap: 1.5rem;
+  color: var(--color-ink-muted);
+  font-size: 0.75rem;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(16px) scale(1.04);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 960px) {
+  .studio-header {
+    flex-direction: column;
+    padding: 2.25rem 1.75rem 1rem;
+  }
+
+  .studio-main {
+    padding: 0 1.75rem 2.5rem;
+  }
+
+  .studio-footer {
+    justify-content: flex-end;
+    padding: 0 1.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .studio-orb {
+    width: 70vw;
+    height: 70vw;
+  }
+}

@@ -1,0 +1,322 @@
+/* ═══════════════════════════════════════════════════════════════
+   LA RULETA DE LA POBLA — Immersive Game Styles
+   Buckshot Roulette / Inscryption inspired dark UI
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Screen Shake ─────────────────────────────────────────────── */
+@keyframes screen-shake {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  10%  { transform: translate(-8px, -5px) rotate(-1deg); }
+  20%  { transform: translate(7px, 6px) rotate(1deg); }
+  30%  { transform: translate(-6px, 4px) rotate(-0.5deg); }
+  40%  { transform: translate(5px, -7px) rotate(0.5deg); }
+  50%  { transform: translate(-4px, 3px) rotate(-0.3deg); }
+  60%  { transform: translate(3px, -2px) rotate(0.3deg); }
+  70%  { transform: translate(-2px, 1px) rotate(-0.1deg); }
+  80%  { transform: translate(1px, -1px) rotate(0.1deg); }
+  90%  { transform: translate(-1px, 0px) rotate(0deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.shake {
+  animation: screen-shake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* ── Cylinder Spin ────────────────────────────────────────────── */
+@keyframes cylinder-spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(1080deg); }
+}
+
+@keyframes cylinder-idle {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(255, 45, 85, 0.15)); }
+  50%      { filter: drop-shadow(0 0 16px rgba(255, 45, 85, 0.3)); }
+}
+
+.cylinder-spinning {
+  animation: cylinder-spin 1.2s cubic-bezier(0.4, 0.0, 0.2, 1) both;
+}
+
+.cylinder-idle {
+  animation: cylinder-idle 3s ease-in-out infinite;
+}
+
+/* ── Glitch Effect ────────────────────────────────────────────── */
+@keyframes glitch-1 {
+  0%   { clip-path: inset(40% 0 61% 0); transform: translate(-2px, 2px); }
+  20%  { clip-path: inset(92% 0 1% 0); transform: translate(1px, -3px); }
+  40%  { clip-path: inset(43% 0 1% 0); transform: translate(-4px, 1px); }
+  60%  { clip-path: inset(25% 0 58% 0); transform: translate(3px, -2px); }
+  80%  { clip-path: inset(54% 0 7% 0); transform: translate(-1px, 3px); }
+  100% { clip-path: inset(58% 0 43% 0); transform: translate(2px, -1px); }
+}
+
+@keyframes glitch-2 {
+  0%   { clip-path: inset(65% 0 13% 0); transform: translate(2px, -1px); }
+  20%  { clip-path: inset(12% 0 75% 0); transform: translate(-3px, 2px); }
+  40%  { clip-path: inset(80% 0 5% 0); transform: translate(1px, -4px); }
+  60%  { clip-path: inset(3% 0 80% 0); transform: translate(-2px, 3px); }
+  80%  { clip-path: inset(45% 0 32% 0); transform: translate(4px, -1px); }
+  100% { clip-path: inset(29% 0 58% 0); transform: translate(-1px, 2px); }
+}
+
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  color: #ff2d55;
+  animation: glitch-1 0.3s infinite linear alternate-reverse;
+  opacity: 0.8;
+}
+
+.glitch-text::after {
+  color: #00f0ff;
+  animation: glitch-2 0.3s infinite linear alternate-reverse;
+  opacity: 0.8;
+}
+
+/* ── Scanline Overlay ─────────────────────────────────────────── */
+.game-scanlines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.04) 2px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* ── CRT Vignette ─────────────────────────────────────────────── */
+.game-vignette {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 49;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+}
+
+/* ── Trigger Button Pulse ─────────────────────────────────────── */
+@keyframes trigger-pulse {
+  0%,  100% {
+    box-shadow:
+      0 0 20px rgba(255, 45, 85, 0.4),
+      0 0 40px rgba(255, 45, 85, 0.15),
+      inset 0 0 20px rgba(255, 45, 85, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 35px rgba(255, 45, 85, 0.7),
+      0 0 70px rgba(255, 45, 85, 0.3),
+      0 0 100px rgba(255, 45, 85, 0.1),
+      inset 0 0 30px rgba(255, 45, 85, 0.2);
+  }
+}
+
+.trigger-btn {
+  animation: trigger-pulse 2s ease-in-out infinite;
+  transition: all 0.2s ease;
+}
+
+.trigger-btn:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 40px rgba(255, 45, 85, 0.8),
+    0 0 80px rgba(255, 45, 85, 0.4),
+    0 0 120px rgba(255, 45, 85, 0.15),
+    inset 0 0 40px rgba(255, 45, 85, 0.25);
+}
+
+.trigger-btn:active {
+  transform: scale(0.97);
+  box-shadow:
+    0 0 15px rgba(255, 45, 85, 0.3),
+    inset 0 0 50px rgba(255, 45, 85, 0.3);
+}
+
+/* ── Flash Effects ────────────────────────────────────────────── */
+@keyframes flash-survive {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.5; }
+  100% { opacity: 0; }
+}
+
+@keyframes flash-death {
+  0%   { opacity: 1; background: rgba(255, 45, 85, 0.6); }
+  30%  { opacity: 1; background: rgba(255, 0, 0, 0.8); }
+  60%  { opacity: 0.5; background: rgba(0, 0, 0, 0.9); }
+  100% { opacity: 0; }
+}
+
+.flash-survive {
+  position: fixed;
+  inset: 0;
+  background: rgba(57, 255, 20, 0.25);
+  z-index: 100;
+  animation: flash-survive 0.8s ease-out forwards;
+  pointer-events: none;
+}
+
+.flash-death {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  animation: flash-death 1.2s ease-out forwards;
+  pointer-events: none;
+}
+
+/* ── Tension Build (text flicker) ─────────────────────────────── */
+@keyframes tension-flicker {
+  0%, 100% { opacity: 1; }
+  10%      { opacity: 0.3; }
+  20%      { opacity: 0.9; }
+  35%      { opacity: 0.4; }
+  50%      { opacity: 1; }
+  65%      { opacity: 0.2; }
+  80%      { opacity: 0.85; }
+  92%      { opacity: 0.1; }
+}
+
+.tension-flicker {
+  animation: tension-flicker 0.15s steps(2) infinite;
+}
+
+/* ── Noise Texture Overlay ────────────────────────────────────── */
+@keyframes noise-scroll {
+  0%   { transform: translate(0, 0); }
+  10%  { transform: translate(-5%, -10%); }
+  20%  { transform: translate(-15%, 5%); }
+  30%  { transform: translate(7%, -25%); }
+  40%  { transform: translate(-5%, 25%); }
+  50%  { transform: translate(-15%, 10%); }
+  60%  { transform: translate(15%, 0%); }
+  70%  { transform: translate(0%, 15%); }
+  80%  { transform: translate(3%, 35%); }
+  90%  { transform: translate(-10%, 10%); }
+  100% { transform: translate(0, 0); }
+}
+
+.noise-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  z-index: 48;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: noise-scroll 8s steps(10) infinite;
+}
+
+/* ── Bot Avatar Styles ────────────────────────────────────────── */
+@keyframes avatar-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(255, 110, 39, 0.3); }
+  50%      { box-shadow: 0 0 25px rgba(255, 110, 39, 0.6), 0 0 40px rgba(255, 110, 39, 0.2); }
+}
+
+.avatar-alive {
+  animation: avatar-glow 3s ease-in-out infinite;
+}
+
+.avatar-dead {
+  filter: grayscale(1) brightness(0.3);
+  opacity: 0.5;
+}
+
+.avatar-turn {
+  box-shadow:
+    0 0 15px rgba(255, 110, 39, 0.6),
+    0 0 35px rgba(255, 110, 39, 0.3);
+}
+
+/* ── HUD Elements ─────────────────────────────────────────────── */
+.hud-stat {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(138, 132, 144, 0.7);
+}
+
+.hud-stat-value {
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+/* ── Chamber Ring ─────────────────────────────────────────────── */
+.chamber {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chamber-fired {
+  background: rgba(255, 45, 85, 0.25);
+  border-color: rgba(255, 45, 85, 0.5);
+  box-shadow: 0 0 10px rgba(255, 45, 85, 0.2);
+}
+
+.chamber-current {
+  background: rgba(255, 110, 39, 0.5);
+  border-color: #ff6e27;
+  box-shadow: 0 0 20px rgba(255, 110, 39, 0.5), 0 0 40px rgba(255, 110, 39, 0.2);
+}
+
+.chamber-empty {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Typing indicator dots ────────────────────────────────────── */
+@keyframes typing-dot {
+  0%, 60%, 100% { opacity: 0.2; transform: translateY(0); }
+  30%           { opacity: 1; transform: translateY(-4px); }
+}
+
+.typing-dot:nth-child(1) { animation: typing-dot 1.4s infinite 0s; }
+.typing-dot:nth-child(2) { animation: typing-dot 1.4s infinite 0.2s; }
+.typing-dot:nth-child(3) { animation: typing-dot 1.4s infinite 0.4s; }
+
+/* ── Blood drip (death effect) ────────────────────────────────── */
+@keyframes blood-drip {
+  0%   { height: 0; opacity: 0; }
+  30%  { height: 30px; opacity: 1; }
+  100% { height: 80px; opacity: 0.3; }
+}
+
+/* ── Modal / Overlay ──────────────────────────────────────────── */
+.game-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .trigger-btn {
+    font-size: 1.2rem !important;
+    padding: 1rem !important;
+  }
+}

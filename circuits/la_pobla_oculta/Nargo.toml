@@ -1,0 +1,7 @@
+[package]
+name = "la_pobla_oculta"
+type = "bin"
+authors = ["ZK Mafia Chile"]
+compiler_version = ">=0.30.0"
+
+[dependencies]

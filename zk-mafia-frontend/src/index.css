@@ -1,0 +1,295 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Permanent+Marker&family=IBM+Plex+Mono:wght@400;600&display=swap");
+@import "tailwindcss/theme";
+@import "tailwindcss/utilities";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   🏘️  BARRIO CHILENO NOCTURNO — Dark Neon Pobla Theme
+   Inspired by Santiago night streets: brick, neon, graffiti
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* — Fonts — */
+  --font-display: "Permanent Marker", "Impact", sans-serif;
+  --font-serif: "Permanent Marker", "Impact", sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "Fira Code", monospace;
+
+  /* — Dark palette: brick, concrete, night sky — */
+  --color-bg: #0a0a0f;
+  --color-surface: #12121c;
+  --color-surface-warm: #1a1520;
+  --color-ink: #e8e0d8;
+  --color-ink-muted: #8a8490;
+
+  /* — Neon accents — */
+  --color-accent: #ff2d55;             /* Neon red/pink — danger, sapo */
+  --color-accent-strong: #ff0844;
+  --color-neon-cyan: #00f0ff;          /* Neon cyan — selections, info */
+  --color-neon-green: #39ff14;         /* Neon green — alive, success */
+  --color-neon-orange: #ff6e27;        /* Street light orange */
+  --color-neon-purple: #bf5af2;        /* Graffiti purple */
+  --color-highlight: #bf5af2;
+  --color-teal: #00f0ff;
+
+  /* — Borders / UI — */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-success: #39ff14;
+  --color-warning: #ff6e27;
+  --color-error: #ff2d55;
+  --color-info: #00f0ff;
+
+  /* — Brick texture overlay — */
+  --brick-pattern: repeating-linear-gradient(
+    90deg,
+    rgba(139, 69, 19, 0.04) 0px,
+    rgba(139, 69, 19, 0.04) 60px,
+    rgba(0, 0, 0, 0.06) 60px,
+    rgba(0, 0, 0, 0.06) 62px
+  ),
+  repeating-linear-gradient(
+    0deg,
+    rgba(139, 69, 19, 0.03) 0px,
+    rgba(139, 69, 19, 0.03) 30px,
+    rgba(0, 0, 0, 0.05) 30px,
+    rgba(0, 0, 0, 0.05) 31px
+  );
+
+  /* — Shapes — */
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-soft: 0 24px 54px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 45, 85, 0.05);
+  --shadow-tight: 0 10px 24px rgba(0, 0, 0, 0.4);
+  --shadow-neon-red: 0 0 20px rgba(255, 45, 85, 0.3), 0 0 60px rgba(255, 45, 85, 0.1);
+  --shadow-neon-cyan: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 60px rgba(0, 240, 255, 0.1);
+  --shadow-neon-green: 0 0 20px rgba(57, 255, 20, 0.3), 0 0 60px rgba(57, 255, 20, 0.1);
+}
+
+html {
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  background: var(--color-bg);
+}
+
+body {
+  font-family: var(--font-body);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  background:
+    var(--brick-pattern),
+    radial-gradient(800px circle at 20% 10%, rgba(255, 45, 85, 0.08), transparent 60%),
+    radial-gradient(600px circle at 80% 20%, rgba(0, 240, 255, 0.06), transparent 55%),
+    radial-gradient(1000px circle at 50% 80%, rgba(191, 90, 242, 0.05), transparent 70%),
+    var(--color-bg);
+  color: var(--color-ink);
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+a {
+  color: var(--color-neon-cyan);
+  text-decoration: none;
+  transition: text-shadow 0.2s;
+}
+
+a:hover {
+  color: var(--color-neon-cyan);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+button {
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s;
+  cursor: pointer;
+  border: 1px solid var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-strong));
+  color: #fff;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-neon-red);
+}
+
+button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  filter: grayscale(0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-neon-cyan);
+  border-color: var(--color-neon-cyan);
+}
+
+.btn-secondary:hover {
+  box-shadow: var(--shadow-neon-cyan);
+}
+
+/* ── Inputs ─────────────────────────────────────────────── */
+input,
+textarea,
+select {
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-ink);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-neon-cyan);
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.15), 0 0 12px rgba(0, 240, 255, 0.1);
+}
+
+/* ── Cards ──────────────────────────────────────────────── */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(8px);
+}
+
+.notice {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.03);
+  font-weight: 600;
+}
+
+.notice.error {
+  color: var(--color-error);
+  border-color: rgba(255, 45, 85, 0.3);
+  background: rgba(255, 45, 85, 0.05);
+}
+
+.notice.success {
+  color: var(--color-success);
+  border-color: rgba(57, 255, 20, 0.3);
+  background: rgba(57, 255, 20, 0.05);
+}
+
+.notice.info {
+  color: var(--color-info);
+  border-color: rgba(0, 240, 255, 0.3);
+  background: rgba(0, 240, 255, 0.05);
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, var(--color-accent), var(--color-neon-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Neon glow utilities ────────────────────────────────── */
+.neon-red {
+  color: var(--color-accent);
+  text-shadow: 0 0 7px rgba(255, 45, 85, 0.5), 0 0 20px rgba(255, 45, 85, 0.2);
+}
+
+.neon-cyan {
+  color: var(--color-neon-cyan);
+  text-shadow: 0 0 7px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+.neon-green {
+  color: var(--color-neon-green);
+  text-shadow: 0 0 7px rgba(57, 255, 20, 0.5), 0 0 20px rgba(57, 255, 20, 0.2);
+}
+
+.neon-orange {
+  color: var(--color-neon-orange);
+  text-shadow: 0 0 7px rgba(255, 110, 39, 0.5), 0 0 20px rgba(255, 110, 39, 0.2);
+}
+
+.neon-purple {
+  color: var(--color-neon-purple);
+  text-shadow: 0 0 7px rgba(191, 90, 242, 0.5), 0 0 20px rgba(191, 90, 242, 0.2);
+}
+
+/* ── Neon border glow animation ─────────────────────────── */
+@keyframes neon-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.neon-border {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+/* ── "Spray paint" heading style ────────────────────────── */
+.graffiti-title {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  text-shadow:
+    0 0 10px rgba(255, 45, 85, 0.6),
+    0 0 30px rgba(255, 45, 85, 0.3),
+    0 0 60px rgba(255, 45, 85, 0.15),
+    2px 2px 0 rgba(0, 0, 0, 0.8);
+}
+
+/* ── Scanline overlay (retro CRT feel) ──────────────────── */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  z-index: 2;
+}
